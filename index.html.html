@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>QUESABROSA | Paletería & Antojitos Mexicanos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #ff5f7d;
+            --primary-dark: #e54b67;
+            --secondary: #ffcf5c;
+            --bg: #fff7f2;
+            --text: #333;
+            --card-bg: #ffffff;
+            --accent: #3ec1d3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 1rem 1.5rem;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        /* LOGO */
+        .logo-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 95px;
+            width: auto;
+            flex-shrink: 0;
+        }
+
+        .logo-text h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .logo-text span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* NAV */
+        nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-btn {
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .nav-btn.active {
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* HERO */
+        .hero {
+            max-width: 1100px;
+            margin: 2rem auto 1.5rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 2rem;
+        }
+
+        .hero-tag {
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 0.7rem;
+        }
+
+        .hero h2 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.1rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.6rem;
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-badges span {
+            background: rgba(0,0,0,0.05);
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+        }
+
+        .hero-image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-paleta {
+            width: 220px;
+            height: 220px;
+            border-radius: 30px;
+            background: radial-gradient(circle at top, #ffe6ec, #ffc6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .paleta-icon {
+            font-size: 5rem;
+            color: #ff8fa3;
+        }
+
+        .hero-badge-top,
+        .hero-badge-bottom {
+            position: absolute;
+            background: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.18);
+        }
+
+        .hero-badge-top {
+            top: -10px;
+            right: -10px;
+        }
+
+        .hero-badge-bottom {
+            bottom: -10px;
+            left: -10px;
+        }
+
+        /* MENÚ SECCIONES */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .section-title h3 {
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .menu-section {
+            display: none;
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        /* GRID de las tarjetas */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: -20%;
+            width: 150%;
+            height: 60px;
+            background: linear-gradient(90deg,
+                rgba(255,95,125,0.25),
+                rgba(255,207,92,0.25)
+            );
+            transform: rotate(-4deg);
+        }
+
+        .menu-tag {
+            font-size: 0.7rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .menu-name {
+            margin-top: 0.3rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .menu-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin: 0.4rem 0 0.8rem;
+        }
+
+        .menu-label {
+            background: rgba(0,0,0,0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+        }
+
+        /* SECCIÓN PALETAS (GRID ESPECIAL) */
+        #paletas-grid {
+            margin-top: 2rem;
+        }
+        /* Categorías dentro de PALETAS */
+        .paletas-category {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .paleta-item-label {
+            background: rgba(0,0,0,0.06);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: inline-block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- ======================== -->
+<!--          HEADER          -->
+<!-- ======================== -->
+<header>
+    <div class="header-content">
+
+        <div class="logo-title">
+            <img src="logo-quesabrosa.png" class="logo-img" alt="Logo Quesabrosa">
+            <div class="logo-text">
+                <h1>QUESABROSA</h1>
+                <span>Paletería & Antojitos Mexicanos</span>
+            </div>
+        </div>
+
+        <nav>
+            <button class="nav-btn active" data-target="paleteria">
+                <i class="fa-solid fa-ice-cream"></i> Paletería
+            </button>
+
+            <button class="nav-btn" data-target="paletas">
+                <i class="fa-solid fa-ice-cream"></i> Paletas
+            </button>
+
+            <button class="nav-btn" data-target="cocina">
+                <i class="fa-solid fa-burger"></i> Cocina
+            </button>
+
+            <button class="nav-btn" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})">
+                <i class="fa-solid fa-location-dot"></i> Contacto
+            </button>
+        </nav>
+
+    </div>
+</header>
+
+<!-- ======================== -->
+<!--           HERO           -->
+<!-- ======================== -->
+<section class="hero">
+    <div class="hero-text">
+        <div class="hero-tag">
+            <i class="fa-solid fa-star"></i>
+            Sabor auténtico, hecho con amor
+        </div>
+
+        <h2>Paletas, nieves y antojitos para toda la familia</h2>
+
+        <p>
+            Disfruta nuestras paletas artesanales, nieves, refrescos y una variedad de platillos.
+        </p>
+
+        <div class="hero-badges" style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <span><i class="fa-solid fa-check"></i> Ingredientes frescos</span>
+            <span><i class="fa-solid fa-check"></i> Ambiente familiar</span>
+            <span><i class="fa-solid fa-check"></i> Servicio para llevar</span>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <div class="hero-paleta">
+            <i class="fa-solid fa-ice-cream paleta-icon"></i>
+        </div>
+
+        <div class="hero-badge-top">
+            <i class="fa-solid fa-fire"></i> Quesabirrias
+        </div>
+
+        <div class="hero-badge-bottom">
+            <i class="fa-solid fa-mug-hot"></i> Champurrado
+        </div>
+    </div>
+</section>
+
+
+<main>
+
+<!-- ======================== -->
+<!--      SECCIÓN ORIGINAL    -->
+<!--        PALETERÍA         -->
+<!-- ======================== -->
+<section class="menu-section active" id="paleteria">
+
+    <div class="section-title">
+        <h3>Menú Paletería</h3>
+        <span>Paletas, nieves y bebidas frías</span>
+    </div>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <div class="menu-tag">Paleta de agua</div>
+            <div class="menu-name">Mango</div>
+            <p class="menu-desc">Paleta de mango natural.</p>
+            <div class="menu-bottom"><span class="menu-label">Recomendada</span></div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Paleta de leche</div>
+            <div class="menu-name">Fresa con Crema</div>
+            <p class="menu-desc">Fresas naturales con leche.</p>
+            <div class="menu-bottom"><span class="menu-label">Clásica</span></div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Nieve</div>
+            <div class="menu-name">Gansito</div>
+            <p class="menu-desc">Nieve cremosa con trozos.</p>
+            <div class="menu-bottom"><span class="menu-label">Popular</span></div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Nieve</div>
+            <div class="menu-name">Limón</div>
+            <p class="menu-desc">Refrescante y natural.</p>
+            <div class="menu-bottom"><span class="menu-label">Muy fresca</span></div>
+        </article>
+
+    </div>
+</section>
+
+
+<!-- ======================== -->
+<!--  NUEVA SECCIÓN PALETAS  -->
+<!-- ======================== -->
+<section class="menu-section" id="paletas">
+
+    <div class="section-title">
+        <h3>Paletas</h3>
+        <span>Sabores tradicionales y especiales</span>
+    </div>
+
+    <!-- CATEGORÍA: AGUA -->
+    <h3 class="paletas-category">Paletas de Agua</h3>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Limón</div>
+            <div class="paleta-item-label">Frescura total</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Sandía</div>
+            <div class="paleta-item-label">Favorita</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Piña</div>
+            <div class="paleta-item-label">Tradicional</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Piña con Chile</div>
+            <div class="paleta-item-label">Muy popular</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Melón</div>
+            <div class="paleta-item-label">Refrescante</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Mango</div>
+            <div class="paleta-item-label">Top Ventas</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Mango Con Chile</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Tamarindo</div>
+            <div class="paleta-item-label">Clásico</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Maracuyá</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Uva Agua</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Grosella</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Chicle Agua</div>
+            <div class="paleta-item-label">Clásica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Mamey</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Agua</div>
+            <div class="menu-name">Fresa Agua</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+    </div>
+
+    <!-- CATEGORÍA: CREMA -->
+    <h3 class="paletas-category">Paletas de Crema</h3>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Fresa con Crema</div>
+            <div class="paleta-item-label">Clásica</div>
+        </article>
+
+         <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Fresa Crema</div>
+            <div class="paleta-item-label">Clásica</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Chocolate</div>
+            <div class="paleta-item-label">Favorita</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Coco</div>
+            <div class="paleta-item-label">Muy popular</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Vainilla</div>
+            <div class="paleta-item-label">Tradicional</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Nuez</div>
+            <div class="paleta-item-label">Premium</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Cajeta</div>
+            <div class="paleta-item-label">Premium</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Arroz</div>
+            <div class="paleta-item-label">Casera</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Chicle Crema</div>
+            <div class="paleta-item-label">Casera</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Uva Crema</div>
+            <div class="paleta-item-label">Casera</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Piñón</div>
+            <div class="paleta-item-label">Premium</div>
+        </article>
+        
+          <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Rompope</div>
+            <div class="paleta-item-label">Clásica</div>
+        </article>
+
+          <article class="menu-card">
+            <div class="menu-tag">Crema</div>
+            <div class="menu-name">Café</div>
+            <div class="paleta-item-label">Casera</div>
+        </article>
+
+    </div>
+
+    <!-- CATEGORÍA: ESPECIALES -->
+    <h3 class="paletas-category">Especiales</h3>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <div class="menu-tag">Especial</div>
+            <div class="menu-name">Gansito</div>
+            <div class="paleta-item-label">Top Ventas</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Especial</div>
+            <div class="menu-name">Oreo</div>
+            <div class="paleta-item-label">Favorita</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Especial</div>
+            <div class="menu-name">Pistache</div>
+            <div class="paleta-item-label">Premium</div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Especial</div>
+            <div class="menu-name">Piña Colada</div>
+            <div class="paleta-item-label">Exótica</div>
+        </article>
+
+         <article class="menu-card">
+            <div class="menu-tag">Especial</div>
+            <div class="menu-name">Tamarindo Con Chile</div>
+            <div class="paleta-item-label">Top Ventas</div>
+        </article>
+
+    </div>
+
+</section>
+<!-- ======================== -->
+<!--      SECCIÓN COCINA      -->
+<!-- ======================== -->
+<section class="menu-section" id="cocina">
+
+    <div class="section-title">
+        <h3>Menú Cocina</h3>
+        <span>Tacos, tortas, hamburguesas y más</span>
+    </div>
+
+    <div class="menu-grid">
+
+        <article class="menu-card">
+            <div class="menu-tag">Tacos</div>
+            <div class="menu-name">Tacos de Asada</div>
+            <p class="menu-desc">Orden de tacos de asada con cebolla, cilantro y salsa.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Clásicos</span>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Tacos</div>
+            <div class="menu-name">Tacos al Pastor</div>
+            <p class="menu-desc">Carne al pastor con piña y salsa.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Muy populares</span>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Quesabirria</div>
+            <div class="menu-name">Quesabirria con consomé</div>
+            <p class="menu-desc">Tortilla dorada con birria, queso y consomé para remojar.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Top ventas</span>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Torta</div>
+            <div class="menu-name">Torta Cubana</div>
+            <p class="menu-desc">Torta grande con diferentes carnes, queso y aguacate.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Gigante</span>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Hamburguesa</div>
+            <div class="menu-name">Hamburguesa Clásica</div>
+            <p class="menu-desc">Hamburguesa de res con papas fritas.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Combo</span>
+            </div>
+        </article>
+
+        <article class="menu-card">
+            <div class="menu-tag">Desayuno</div>
+            <div class="menu-name">Huevos con Chorizo</div>
+            <p class="menu-desc">Huevos con chorizo, frijoles y tortillas.</p>
+            <div class="menu-bottom">
+                <span class="menu-label">Completo</span>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+
+<!-- ======================== -->
+<!--        CONTACTO          -->
+<!-- ======================== -->
+<section id="contacto" style="margin-top:2rem;">
+
+    <div class="info-banner"
+         style="margin:0 0 1.5rem;padding:0.8rem 1rem;border-radius:16px;background:rgba(255,255,255,0.9);box-shadow:0 4px 15px rgba(0,0,0,0.07);display:flex;flex-wrap:wrap;gap:0.8rem 1.5rem;font-size:0.85rem;">
+
+        <div style="display:flex;align-items:center;gap:0.4rem;">
+            <i class="fa-solid fa-location-dot" style="color:var(--primary);"></i>
+            <span><strong>Dirección:</strong> 903 S Parker St Suite A, Olathe, KS 66061</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:0.4rem;">
+            <i class="fa-solid fa-phone" style="color:var(--primary);"></i>
+            <span><strong>Teléfono:</strong> (913) 735-7344</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:0.4rem;">
+            <i class="fa-solid fa-clock" style="color:var(--primary);"></i>
+            <span><strong>Horario:</strong> Lunes a Domingo 9:00 AM – 10:00 PM</span>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- ======================== -->
+<!--          FOOTER          -->
+<!-- ======================== -->
+<footer style="background:#1f1f1f;color:white;padding:1.8rem 1.5rem 1rem;margin-top:2rem;">
+    <div class="footer-content" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1.5rem;">
+
+        <div>
+            <div class="footer-title" style="font-family:'Fredoka One',cursive;font-size:1.4rem;margin-bottom:0.4rem;">
+                QUESABROSA
+            </div>
+
+            <div class="footer-sub" style="font-size:0.85rem;opacity:0.8;margin-bottom:0.8rem;">
+                Paletería, nieves, antojitos y comida mexicana en un solo lugar.
+            </div>
+
+            <div class="footer-contact" style="font-size:0.85rem;">
+                <p><i class="fa-solid fa-location-dot"></i> 903 S Parker St Suite A, Olathe, KS 66061</p>
+                <p><i class="fa-solid fa-phone"></i> (913) 735-7344</p>
+                <p><i class="fa-brands fa-whatsapp"></i> WhatsApp para órdenes grandes</p>
+                <p><i class="fa-solid fa-envelope"></i> contacto@quesabrosa.com</p>
+            </div>
+
+            <div class="social-icons" style="display:flex;gap:0.7rem;margin-top:0.8rem;">
+                <a href="#" aria-label="Facebook"
+                   style="width:34px;height:34px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1rem;">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram"
+                   style="width:34px;height:34px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1rem;">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok"
+                   style="width:34px;height:34px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1rem;">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="WhatsApp"
+                   style="width:34px;height:34px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:1rem;">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-hours" style="font-size:0.85rem;">
+            <h4 style="font-size:0.95rem;margin-bottom:0.4rem;">Horarios y servicios</h4>
+            <p><strong>Lunes a Domingo:</strong> 9:00 AM – 10:00 PM</p>
+            <p><strong>Servicio:</strong> Dine-in, para llevar y órdenes por teléfono.</p>
+            <p><strong>Eventos:</strong> Pregunta por servicio para fiestas y eventos especiales.</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom" style="max-width:1100px;margin:1.2rem auto 0;font-size:0.75rem;opacity:0.6;text-align:center;">
+        © <span id="year"></span> QUESABROSA. Todos los derechos reservados.
+    </div>
+</footer>
+
+
+<!-- ======================== -->
+<!--          SCRIPT          -->
+<!-- ======================== -->
+<script>
+    // Botones de navegación (Paletería / Paletas / Cocina)
+    const navButtons = document.querySelectorAll('.nav-btn[data-target]');
+    const sections = document.querySelectorAll('.menu-section');
+
+    navButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.getAttribute('data-target');
+
+            // Quitar "active" de todos los botones
+            navButtons.forEach(b => b.classList.remove('active'));
+            // Activar el botón actual
+            btn.classList.add('active');
+
+            // Mostrar la sección correspondiente
+            sections.forEach(sec => {
+                if (sec.id === target) {
+                    sec.classList.add('active');
+                } else {
+                    sec.classList.remove('active');
+                }
+            });
+
+            // Subir un poco para que se vea el inicio del contenido
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Año actual en el footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
